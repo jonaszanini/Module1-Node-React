@@ -17,18 +17,16 @@ function logRequests(request, response, next) {
 }
 
 function validateProjectId(request, response, next) {
-    const {id} = request.params;
+    const { id } = request.params;
 
-    if(!validate(id)) {
-        return response.status(400).json({error: 'invalid id'})
+    if (!validate(id)) {
+        return response.status(400).json({ error: "invalid id" });
     }
 
     return next();
 }
 
-app.use(logRequests);
-
-app.get("/projects", logRequests, (req, res) => {
+app.get("/projects", (req, res) => {
     const { title } = req.query;
 
     const results = title ? projects.filter((project) => project.title.includes(title)) : projects;
