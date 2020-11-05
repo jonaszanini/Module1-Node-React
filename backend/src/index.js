@@ -1,7 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const { v4: uuidv4, validate } = require("uuid");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const projects = [];
@@ -54,9 +56,9 @@ app.put("/projects/:id", (req, res) => {
     }
 
     const project = {
-        id,
-        title,
-        owner,
+        id: id,
+        title: title,
+        owner: owner,
     };
 
     projects[projectIndex] = project;
